@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
+
+.Container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.BoardContainer{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+.boardButton {
+  height: 10rem;
+  width: 10rem;
+  background-color: white;
+  border: 1px solid #E1C7FF;
+  padding: 2px;
+  font-size: 4rem;
+  text-align: center
+}
+
+.boardButton:hover{
+background-color:#F4B7C2;
+}
+
+.restartButton{
+  height: 5rem;
+  width: 13rem;
+  background-color: white;
+  border: 1px solid #E1C7FF;
+  padding: 2px;
+  font-size: 2rem;
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  text-align: center;
+  padding: 0px;
+  position: static;
+}
+
+.restartButton:hover{
+  background-color: #FFD07E;
+}
+
+h3{
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-size: 1.5rem;
+}
