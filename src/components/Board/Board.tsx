@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../Button/Button";
 import { RestartButton } from "../RestartButton/RestartButton";
+import { Scoreboard } from "../Scoreboard/Scoreboard";
 import './Board.css'
 
 const results = [
@@ -20,7 +21,8 @@ export function Board() {
   const [symbols, setSymbols] = useState<Array<'X' | 'O' | null>>([null, null, null, null, null, null, null, null, null])
   const [turn, setTurn] = useState(0)
   const [winner, setWinner] = useState<'X' | 'O' | 'DRAW' | null>(null)
-  //const [clickDisable, setClickDisable] = useState(false)
+  const [pointsPlayerOne, setPointsPlayerOne] = useState(0)
+  const [pointsPlayerTwo, setPointsPlayerTwo] = useState(0)
 
   //Function receives index from symbols array as parameter
   function markOnButton(index: number) {
@@ -57,8 +59,14 @@ export function Board() {
 
       if (symbols[a] && symbols[a] === symbols[b] && symbols[b] === symbols[c]) {
         setWinner(currentPlayer);
+        if (currentPlayer === 'X'){
+          setPointsPlayerOne(pointsPlayerOne + 1)
+        }
+        else {
+          setPointsPlayerTwo(pointsPlayerTwo + 1)
+        }
       }
-      else if (currentTurn === 9 && (symbols[a] !== symbols[b] || symbols[b] !== symbols[c])){
+      else if (currentTurn === 9 && (symbols[a] !== symbols[b] || symbols[b] !== symbols[c])) {
         setWinner('DRAW');
       }
     })
@@ -68,15 +76,16 @@ export function Board() {
     setSymbols(Array(9).fill(null));
     setWinner(null);
     setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
-    setTurn(0)
+    setTurn(0);
   }
 
   function declareWinner() {
-    if (winner === 'X' || winner === 'O') return 'The winner is ' + winner;
+    if (winner === 'X' || winner === 'O') return winner + " won this round";
     if (winner === 'DRAW') return 'Nobody won this round'
   }
 
   return (
+    <>
     <div className="Container">
       <div className="BoardContainer">
         <Button className="boardButton" onClick={() => markOnButton(0)} symbol={symbols[0]} />
@@ -93,6 +102,12 @@ export function Board() {
         <h3>{declareWinner()}</h3>
         <RestartButton className="restartButton" onClick={() => RestartGame()} />
       </div>
-    </div>
+      </div>
+      <div className="ScoreboardContainer">
+        <p>Score Board</p>
+        <Scoreboard player="Player 1" points={pointsPlayerOne} />
+        <Scoreboard player="Player 2" points={pointsPlayerTwo} />
+      </div>
+    </>
   )
 }

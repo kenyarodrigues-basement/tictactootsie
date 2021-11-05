@@ -46,3 +46,11 @@ h3{
   font-family: 'Zen Kaku Gothic Antique', sans-serif;
   font-size: 1.5rem;
 }
+
+.ScoreboardContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 10rem;
+  justify-content: center;
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+}
